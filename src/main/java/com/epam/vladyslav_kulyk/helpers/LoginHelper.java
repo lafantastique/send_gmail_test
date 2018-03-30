@@ -1,4 +1,4 @@
-package com.epam.vladyslav_kulyk.pages.helpers;
+package com.epam.vladyslav_kulyk.helpers;
 
 import com.epam.vladyslav_kulyk.core.Driver;
 import com.epam.vladyslav_kulyk.pages.LoginPage;

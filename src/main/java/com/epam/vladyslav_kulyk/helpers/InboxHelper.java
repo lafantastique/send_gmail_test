@@ -1,8 +1,7 @@
-package com.epam.vladyslav_kulyk.pages.helpers;
+package com.epam.vladyslav_kulyk.helpers;
 
 import com.epam.vladyslav_kulyk.core.Driver;
 import com.epam.vladyslav_kulyk.pages.InboxPage;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
