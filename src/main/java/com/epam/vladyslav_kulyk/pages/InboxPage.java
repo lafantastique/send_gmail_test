@@ -2,72 +2,57 @@ package com.epam.vladyslav_kulyk.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.Button;
-import ru.yandex.qatools.htmlelements.element.TextBlock;
 public class InboxPage extends BasePage {
 
-    @Name("ComposeButton")
     @FindBy(xpath = "//div[@gh='cm']")
-    private Button composeButton;
+    private WebElement composeButton;
 
-    @Name("GoogleAccountIcon")
     @FindBy(xpath = "//div[@id='gb']//a[contains(@title, 'Google') and contains(@href, 'SignOut')]/span")
     private WebElement googleAccIcon;
 
-    @Name("AccountNameLabel")
     @FindBy(xpath = "//div[@img-loaded]/div/div/div[2]")
-    private TextBlock accountNameLabel;
+    private WebElement accountNameLabel;
 
-    @Name("FieldToInCreationEmail")
     @FindBy(xpath = "//textarea[@name='to']")
-    private TextBlock fieldTo;
+    private WebElement fieldTo;
 
-    @Name("FieldSubjectInCreationEmail")
     @FindBy(xpath = "//input[@name='subjectbox']")
-    private TextBlock fieldSubject;
+    private WebElement fieldSubject;
 
-    @Name("FieldBodyInCreationEmail")
     @FindBy(xpath = "//div[contains(@class, 'editable')]")
-    private TextBlock fieldBody;
+    private WebElement fieldBody;
 
-    @Name("ButtonSendEmail")
     @FindBy(xpath = "//tr[@class='btC']/td[1]//div[@role='button']")
-    private Button buttonSend;
+    private WebElement buttonSend;
 
-    @Name("SendEmailCofirmationLabel")
     @FindBy(xpath = "//span[@id='link_vsm']")
     private WebElement confirmLabel;
 
-    @Name("LogOutButton")
     @FindBy(xpath = "//a[contains(@href, 'Logout')]")
-    private Button logOutButton;
+    private WebElement logOutButton;
 
-    @Name("ChangeAvatarButton")
     @FindBy(xpath = "//a[contains(@href, 'profiles')]")
-    private Button changeAvatarButton;
+    private WebElement changeAvatarButton;
 
-    @Name("InboxButton")
     @FindBy(xpath = "//div[@role='navigation']//a[contains(@href, '#inbox')]")
-    private Button inboxButton;
+    private WebElement inboxButton;
 
-    @Name("FirstEmail")
     @FindBy(xpath = "(//div[@class='UI']//tr//div/span)[1]/../..")
-    private Button firstEmail;
+    private WebElement firstEmail;
 
-    public Button getChangeAvatarButton() {
+    public WebElement getChangeAvatarButton() {
         return changeAvatarButton;
     }
 
-    public Button getFirstEmail() {
+    public WebElement getFirstEmail() {
         return firstEmail;
     }
 
-    public Button getInboxButton() {
+    public WebElement getInboxButton() {
         return inboxButton;
     }
 
-    public Button getLogOutButton() {
+    public WebElement getLogOutButton() {
         return logOutButton;
     }
 
@@ -75,27 +60,27 @@ public class InboxPage extends BasePage {
         return googleAccIcon;
     }
 
-    public Button getComposeButton() {
+    public WebElement getComposeButton() {
         return composeButton;
     }
 
-    public TextBlock getAccountNameLabel() {
+    public WebElement getAccountNameLabel() {
         return accountNameLabel;
     }
 
-    public TextBlock getFieldTo() {
+    public WebElement getFieldTo() {
         return fieldTo;
     }
 
-    public TextBlock getFieldSubject() {
+    public WebElement getFieldSubject() {
         return fieldSubject;
     }
 
-    public TextBlock getFieldBody() {
+    public WebElement getFieldBody() {
         return fieldBody;
     }
 
-    public Button getButtonSend() {
+    public WebElement getButtonSend() {
         return buttonSend;
     }
 

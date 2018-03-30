@@ -1,41 +1,34 @@
 package com.epam.vladyslav_kulyk.pages;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.Button;
-import ru.yandex.qatools.htmlelements.element.TextInput;
-
 public class LoginPage extends BasePage {
 
-    @Name("EmailInput")
     @FindBy(xpath = "//input[@id='identifierId']")
-    private TextInput emailInput;
+    private WebElement emailInput;
 
-    @Name("PasswordInput")
     @FindBy(xpath = ".//input[@name='password']")
-    private TextInput passwordInput;
+    private WebElement passwordInput;
 
-    @Name("NextBtn")
     @FindBy(xpath = "//div[@id='identifierNext']/content/span")
-    private Button nextButton;
+    private WebElement nextButton;
 
-    @Name("SignInBtn")
     @FindBy(xpath = "//div[@id='passwordNext']/content/span")
-    private Button signInButton;
+    private WebElement signInButton;
 
-    public Button getNextButton() {
+    public WebElement getNextButton() {
         return nextButton;
     }
 
-    public Button getSignInButton() {
+    public WebElement getSignInButton() {
         return signInButton;
     }
 
-    public TextInput getEmailInput() {
+    public WebElement getEmailInput() {
         return emailInput;
     }
 
-    public TextInput getPasswordInput() {
+    public WebElement getPasswordInput() {
         return passwordInput;
     }
 

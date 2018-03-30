@@ -62,7 +62,7 @@ public class TestSendEmail extends BaseTest {
     }
 
     @AfterClass
-    public void deleteEmail(){
+    public void deleteEmail() throws InterruptedException {
         letterPage.getDeleteButton().click();
         inboxHelper.clickOnAccountIcon();
         wait.until(ExpectedConditions.visibilityOf(inboxPage.getChangeAvatarButton()));
