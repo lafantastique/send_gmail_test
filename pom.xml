@@ -57,6 +57,12 @@
             <version>6.10</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>se.emirbuc.randomsentence</groupId>
+            <artifactId>random-sentence-generator</artifactId>
+            <version>0.0.7</version>
+        </dependency>
         <dependency>
             <groupId>ru.yandex.qatools.htmlelements</groupId>
             <artifactId>htmlelements-java</artifactId>

@@ -1,7 +1,10 @@
 package com.epam.vladyslav_kulyk.pages;
 
+import com.epam.vladyslav_kulyk.core.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LetterPage extends BasePage {
 
@@ -17,7 +20,7 @@ public class LetterPage extends BasePage {
     @FindBy(xpath = "//div[@role='main']//div[@dir='ltr']")
     private WebElement letter;
 
-    @FindBy(xpath = "//div[@act=10]")
+    @FindBy(xpath = "(//div[@act=10])[last()]")
     private WebElement deleteButton;
 
     public WebElement getDescriptionButton() {
