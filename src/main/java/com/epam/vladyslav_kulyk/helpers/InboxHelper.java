@@ -2,12 +2,12 @@ package com.epam.vladyslav_kulyk.helpers;
 
 import com.epam.vladyslav_kulyk.core.Driver;
 import com.epam.vladyslav_kulyk.pages.InboxPage;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import com.epam.vladyslav_kulyk.utils.Waiter;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class InboxHelper {
     private InboxPage inboxPage;
-    private WebDriverWait wait = (new WebDriverWait(Driver.getDriver(), 10));
 
 
     public InboxHelper() {
@@ -22,14 +22,16 @@ public class InboxHelper {
     }
 
     public void clickOnLogOutButton(){
-        wait.until(ExpectedConditions.visibilityOf(inboxPage.getLogOutButton()));
+        Waiter.waitForElement(inboxPage.getLogOutButton());
         inboxPage.getLogOutButton().click();
     }
 
-    public void createEmailclick(){
-        inboxPage.getComposeButton().click();
+    public WebElement getEmailBySubject(String subject) {
+        String xPath = "//span/b[contains(text(), '" + subject + "')]";
+        return Driver.getDriver().findElement(By.xpath(xPath));
     }
-    public void clickInbox(){
+
+    public void clickInboxButton(){
         inboxPage.getInboxButton().click();
     }
 

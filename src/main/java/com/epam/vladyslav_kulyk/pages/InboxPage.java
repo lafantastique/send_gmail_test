@@ -43,11 +43,6 @@ public class InboxPage extends BasePage {
         return changeAvatarButton;
     }
 
-    public WebElement getEmailBySubject(String subject) {
-        String xPath = "//span/b[contains(text(), '" + subject + "')]";
-        return Driver.getDriver().findElement(By.xpath(xPath));
-    }
-
     public WebElement getInboxButton() {
         return inboxButton;
     }

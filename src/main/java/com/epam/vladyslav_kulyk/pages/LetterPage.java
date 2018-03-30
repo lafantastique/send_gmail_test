@@ -3,15 +3,13 @@ package com.epam.vladyslav_kulyk.pages;
 import com.epam.vladyslav_kulyk.core.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LetterPage extends BasePage {
 
     @FindBy(xpath = "//div[contains(@class,'ajA')]//tbody/tr[1]/td[2]/span/span[1]")
     private WebElement addressFrom;
 
-    @FindBy(xpath = "//img[contains(@class,'ajz')]/..")
+    @FindBy(xpath = "//img[contains(@class,'ajz')]")
     private WebElement descriptionButton;
 
     @FindBy(xpath = "//div[@role='main']//h2")
