@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LetterPage extends BasePage {
 
-    @FindBy(xpath = "//div[contains(@class,'ajA')]//tbody/tr[1]/td[2]/span/span[1]")
+    @FindBy(xpath = "(//span[@data-hovercard-id='btestovickij@gmail.com'])[3]")
     private WebElement addressFrom;
 
     @FindBy(xpath = "//img[contains(@class,'ajz')]")
@@ -41,7 +41,7 @@ public class LetterPage extends BasePage {
         return addressFrom;
     }
 
-    public String getAdressString() {
-        return getAddressFrom().getAttribute("email");
-    }
+    //public String getAdressString() {
+//        return getAddressFrom().getAttribute("jid");
+//    }
 }

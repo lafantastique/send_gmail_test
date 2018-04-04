@@ -20,8 +20,9 @@ public class TestSendEmail extends BaseTest {
     private LetterHelper letterHelper;
     private InboxPage inboxPage;
     private LetterPage letterPage;
-    private LoginPage loginPage;
     private String randSubject;
+    private String randText;
+
 
     @BeforeClass
     public void openMainPage() {
@@ -31,7 +32,6 @@ public class TestSendEmail extends BaseTest {
         letterHelper = new LetterHelper();
         inboxPage = new InboxPage();
         letterPage = new LetterPage();
-        loginPage = new LoginPage();
     }
 
     @Test(priority = 1)
@@ -46,7 +46,8 @@ public class TestSendEmail extends BaseTest {
     @Test(priority = 2)
     public void sendEmail(){
         randSubject = RandomSentences.generateRandomSentence(null);
-        inboxHelper.createAndSendEmail("btestovickij@gmail.com", randSubject, "Some great letter!");
+        randText = RandomSentences.generateRandomSentence(RandomSentences.Length.LONG);
+        inboxHelper.createAndSendEmail("btestovickij@gmail.com", randSubject, randText);
         Waiter.waitForElement(inboxPage.getConfirmLabel());
         Assert.assertTrue(inboxPage.getConfirmLabel().isDisplayed());
     }
@@ -58,13 +59,14 @@ public class TestSendEmail extends BaseTest {
         inboxHelper.getEmailBySubject(randSubject).click();
         Waiter.waitForElement(letterPage.getDescriptionButton());
         letterHelper.descriptionButtonClick();
-        Assert.assertEquals(letterPage.getAdressString(), "btestovickij@gmail.com");
+        //Assert.assertEquals(letterPage.getAdressString(), "btestovickij@gmail.com");
+        Assert.assertTrue(letterPage.getAddressFrom().isDisplayed());
         Assert.assertEquals(letterPage.getSubject().getText(), randSubject);
-        Assert.assertEquals(letterPage.getLetter().getText(), "Some great letter!");
+        Assert.assertEquals(letterPage.getLetter().getText(), randText);
     }
 
     @AfterClass
-    public void deleteEmailAndLogOu() {
+    public void deleteEmailAndLogOut() {
         letterHelper.deleteButtonClick();
         inboxHelper.clickOnAccountIcon();
         inboxHelper.clickOnLogOutButton();

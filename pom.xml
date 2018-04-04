@@ -3,6 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <browserType>${browserType}</browserType>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <allure.results.directory>target/allure-results_${timestamp}</allure.results.directory>
+        <allure.report.directory>target/allure-results_${timestamp}/allure-report</allure.report.directory>
+    </properties>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test/java</testSourceDirectory>
@@ -24,6 +30,7 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>./src/test/resources/TestSuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <testFailureIgnore>false</testFailureIgnore>
                 </configuration>
             </plugin>
         </plugins>
@@ -32,12 +39,14 @@
         <excludeDefaults>true</excludeDefaults>
         <plugins>
             <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>2.9</version>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-maven-plugin</artifactId>
+                <version>2.6</version>
                 <configuration>
-                    <resultsDirectory>allure-results</resultsDirectory>
-                    <reportDirectory>allure-report</reportDirectory>
+                    <resultsDirectory>allure-results_${timestamp}</resultsDirectory>
+                    <inputDirectories>${allure.results.directory}</inputDirectories>
+                    <reportDirectory>${allure.report.directory}</reportDirectory>
+                    <reportingOutputDirectory>${allure.report.directory}</reportingOutputDirectory>
                 </configuration>
             </plugin>
         </plugins>
@@ -54,10 +63,14 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.10</version>
+            <version>6.13.1</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.7.4</version>
+        </dependency>
         <dependency>
             <groupId>se.emirbuc.randomsentence</groupId>
             <artifactId>random-sentence-generator</artifactId>
@@ -67,6 +80,11 @@
             <groupId>ru.yandex.qatools.htmlelements</groupId>
             <artifactId>htmlelements-java</artifactId>
             <version>1.18</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-junit-adaptor</artifactId>
+            <version>1.5.4</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
