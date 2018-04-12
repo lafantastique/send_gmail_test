@@ -1,2 +1,2 @@
 # Use MAVEN lifecycle steps to build project
-#mvn clean test site -DbrowserType=CHROME
+clean test site -DbrowserType=CHROME -DtestSuite=TestSuite.xml

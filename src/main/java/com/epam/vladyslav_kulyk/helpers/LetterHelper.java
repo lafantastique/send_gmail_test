@@ -11,6 +11,7 @@ public class LetterHelper {
     }
 
     public void deleteButtonClick(){
+        Waiter.waitForElement(letterPage.getDeleteButton());
         letterPage.getDeleteButton().click();
     }
 

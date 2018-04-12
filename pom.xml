@@ -5,9 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <browserType>${browserType}</browserType>
-        <timestamp>${maven.build.timestamp}</timestamp>
-        <allure.results.directory>target/allure-results_${timestamp}</allure.results.directory>
-        <allure.report.directory>target/allure-results_${timestamp}/allure-report</allure.report.directory>
+        <testSuite>${testSuite}</testSuite>
+        <allure.testng.version>2.0-BETA14</allure.testng.version>
     </properties>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -16,7 +15,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.6.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -25,28 +24,31 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20.1</version>
+                <version>2.20</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>./src/test/resources/TestSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>./src/test/resources/${testSuite}</suiteXmlFile>
                     </suiteXmlFiles>
                     <testFailureIgnore>false</testFailureIgnore>
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
     <reporting>
         <excludeDefaults>true</excludeDefaults>
         <plugins>
             <plugin>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-maven-plugin</artifactId>
-                <version>2.6</version>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.8</version>
                 <configuration>
-                    <resultsDirectory>allure-results_${timestamp}</resultsDirectory>
-                    <inputDirectories>${allure.results.directory}</inputDirectories>
-                    <reportDirectory>${allure.report.directory}</reportDirectory>
-                    <reportingOutputDirectory>${allure.report.directory}</reportingOutputDirectory>
+                    <reportVersion>2.3.1</reportVersion>
                 </configuration>
             </plugin>
         </plugins>
@@ -58,43 +60,41 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.7.1</version>
+            <version>3.6.0</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.13.1</version>
+            <version>6.10</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.7.4</version>
         </dependency>
         <dependency>
             <groupId>se.emirbuc.randomsentence</groupId>
             <artifactId>random-sentence-generator</artifactId>
             <version>0.0.7</version>
         </dependency>
-        <dependency>
-            <groupId>ru.yandex.qatools.htmlelements</groupId>
-            <artifactId>htmlelements-java</artifactId>
-            <version>1.18</version>
-        </dependency>
-        <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-junit-adaptor</artifactId>
-            <version>1.5.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-firefox-driver</artifactId>
-            <version>3.11.0</version>
-        </dependency>
+
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>3.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+            <version>2.0-BETA14</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

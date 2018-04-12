@@ -1,16 +1,13 @@
 package EndToEnd;
 
-import com.epam.vladyslav_kulyk.core.Driver;
+import com.epam.vladyslav_kulyk.core.DriverFactory;
 import com.epam.vladyslav_kulyk.helpers.LetterHelper;
 import com.epam.vladyslav_kulyk.pages.InboxPage;
 import com.epam.vladyslav_kulyk.pages.LetterPage;
-import com.epam.vladyslav_kulyk.pages.LoginPage;
 import com.epam.vladyslav_kulyk.helpers.InboxHelper;
 import com.epam.vladyslav_kulyk.helpers.LoginHelper;
-import com.epam.vladyslav_kulyk.utils.Waiter;
 import se.emirbuc.randomsentence.RandomSentences;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -26,7 +23,7 @@ public class TestSendEmail extends BaseTest {
 
     @BeforeClass
     public void openMainPage() {
-        Driver.getDriver().get("https://gmail.com");
+        DriverFactory.getDriver().get("https://gmail.com");
         loginHelper = new LoginHelper();
         inboxHelper = new InboxHelper();
         letterHelper = new LetterHelper();
@@ -35,12 +32,10 @@ public class TestSendEmail extends BaseTest {
     }
 
     @Test(priority = 1)
-    public void logIn() throws InterruptedException {
+    public void checkLogIn() {
         loginHelper.login("btestovickij@gmail.com", "zxcvbnm98765432");
-        Waiter.waitForElement(inboxPage.getGoogleAccIcon());
-        inboxHelper.clickOnAccountIcon();
-        Waiter.waitForElement(inboxPage.getAccountNameLabel());
         Assert.assertTrue(inboxHelper.getAccountName().contains("btestovickij@gmail.com"));
+
     }
 
     @Test(priority = 2)
@@ -48,27 +43,19 @@ public class TestSendEmail extends BaseTest {
         randSubject = RandomSentences.generateRandomSentence(null);
         randText = RandomSentences.generateRandomSentence(RandomSentences.Length.LONG);
         inboxHelper.createAndSendEmail("btestovickij@gmail.com", randSubject, randText);
-        Waiter.waitForElement(inboxPage.getConfirmLabel());
         Assert.assertTrue(inboxPage.getConfirmLabel().isDisplayed());
     }
 
     @Test(priority = 3)
-    public void checkForRecievedEmail(){
+    public void checkForReceivedEmail() {
         inboxHelper.clickInboxButton();
-        Waiter.waitForUrlContains("#inbox");
         inboxHelper.getEmailBySubject(randSubject).click();
-        Waiter.waitForElement(letterPage.getDescriptionButton());
         letterHelper.descriptionButtonClick();
-        //Assert.assertEquals(letterPage.getAdressString(), "btestovickij@gmail.com");
         Assert.assertTrue(letterPage.getAddressFrom().isDisplayed());
         Assert.assertEquals(letterPage.getSubject().getText(), randSubject);
         Assert.assertEquals(letterPage.getLetter().getText(), randText);
+        letterHelper.deleteButtonClick();
     }
 
-    @AfterClass
-    public void deleteEmailAndLogOut() {
-        letterHelper.deleteButtonClick();
-        inboxHelper.clickOnAccountIcon();
-        inboxHelper.clickOnLogOutButton();
-    }
+
 }

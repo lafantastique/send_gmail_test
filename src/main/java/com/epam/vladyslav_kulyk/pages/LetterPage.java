@@ -1,6 +1,5 @@
 package com.epam.vladyslav_kulyk.pages;
 
-import com.epam.vladyslav_kulyk.core.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -41,7 +40,4 @@ public class LetterPage extends BasePage {
         return addressFrom;
     }
 
-    //public String getAdressString() {
-//        return getAddressFrom().getAttribute("jid");
-//    }
 }

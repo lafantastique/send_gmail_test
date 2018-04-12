@@ -2,6 +2,7 @@ package com.epam.vladyslav_kulyk.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//input[@id='identifierId']")
@@ -15,6 +16,7 @@ public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//div[@id='passwordNext']/content/span")
     private WebElement signInButton;
+
 
     public WebElement getNextButton() {
         return nextButton;
